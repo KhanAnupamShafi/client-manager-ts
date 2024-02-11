@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { UsersContext } from '../../contextAPI';
+import Pagination from './Pagination';
 import UserCard from './UserCard';
 
 const UserList = () => {
@@ -39,27 +40,19 @@ const UserList = () => {
     }
   };
   return (
-    <div className="flex justify-center">
-      <div className="container w-fit mx-auto  !px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-14 ">
-        {visibleUsers.map((user) => {
-          console.log(user);
-          return <UserCard key={user.id} user={user} />;
-        })}
-        <div className="flex justify-end my-2">
-          <div className="btn-group">
-            {pageNumber.map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageClick(page)}
-                className={`btn btn-sm ${
-                  currentPage === page ? 'bg-[#1489BF]' : ''
-                }`}>
-                {page}
-              </button>
-            ))}
-          </div>
+    <div>
+      <div className="flex justify-center">
+        <div className="container w-fit mx-auto  !px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-14 ">
+          {visibleUsers.map((user) => {
+            return <UserCard key={user.id} user={user} />;
+          })}
         </div>
       </div>
+      <Pagination
+        onPageClick={handlePageClick}
+        pageNumber={pageNumber}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
