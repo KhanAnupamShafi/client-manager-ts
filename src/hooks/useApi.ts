@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from '../contextAPI';
 import { IUser } from '../interface';
+import { getHighestId } from '../util/getHighestId';
 
 /**
  * This custom hook fetches user data from an API endpoint, manage loading and error states,
@@ -20,14 +21,19 @@ const useApi = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Add the form state to the existing usersData array after form submission
+    const highestId = getHighestId(usersData);
+
     setUsersData((prevUsersData) => [
       ...prevUsersData,
-      { ...formState, id: parseInt(crypto.randomUUID()) },
+      { ...formState, id: highestId },
     ]);
   };
 
   // Function to fetch dummy user data from the API
-  const fetchDummyUserData = async () => {
+  const fetchDummyUserData = async (
+    limit: number = 10,
+    skip: number = 50
+  ): Promise<void> => {
     try {
       // Update loading state to indicate fetching is in progress
       setLoading((prevLoading) => ({
@@ -38,8 +44,9 @@ const useApi = () => {
 
       // Fetch data from the API
       const response = await fetch(
-        'https://dummyjson.com/users?skip=90'
+        `https://dummyjson.com/users?${limit}&skip=${skip}`
       );
+      // handle error response
       if (!response) {
         throw new Error(`Could not fetch from https://dummyjson.com`);
       }
