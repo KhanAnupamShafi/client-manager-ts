@@ -1,9 +1,17 @@
 import './App.css';
+import Search from './components/header/Search';
+import Layout from './components/layout/Layout';
+import AddUserForm from './components/user/AddUserForm';
+import UserList from './components/user/UserList';
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Layout>
+        <Search />
+        <UserList />
+        <AddUserForm />
+      </Layout>
     </>
   );
 }
