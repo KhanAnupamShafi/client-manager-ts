@@ -1,4 +1,8 @@
+import { useUsersContext } from '../../contextAPI';
+
 const Search = () => {
+  const { handleInputChange } = useUsersContext();
+
   return (
     <div className="flex justify-center my-16">
       <div className="container bg-secondary p-8 text-center m-auto rounded-lg">
@@ -26,8 +30,9 @@ const Search = () => {
             <input
               className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
               type="text"
-              id="search"
+              name="search"
               placeholder="Search user name.."
+              onChange={handleInputChange}
             />
           </div>
         </div>
