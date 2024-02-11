@@ -4,6 +4,8 @@ import { IFormAction } from '../states/action.interface';
 import { initialState } from '../states/formReducer';
 import FormProvider from './formProvider';
 import UsersProvider from './usersProvider';
+
+// ts interfaces for context types
 interface UsersContextType {
   usersData: IUser[];
   loading: {
@@ -12,7 +14,12 @@ interface UsersContextType {
   };
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSortChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  toggleSortOrder: () => void;
+  sortOrder: string;
+  sortBy: string;
 }
+
 interface FormContextType {
   state: IUser;
   dispatch: React.Dispatch<IFormAction>;
@@ -23,6 +30,10 @@ const UsersContext = createContext<UsersContextType>({
   loading: { state: false, message: '' },
   handleSubmit: () => {},
   handleInputChange: () => {},
+  handleSortChange: () => {},
+  toggleSortOrder: () => {},
+  sortOrder: '',
+  sortBy: '',
 });
 
 // Create the Form context
