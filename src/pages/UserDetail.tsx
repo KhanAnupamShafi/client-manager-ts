@@ -67,9 +67,9 @@ const UserDetail = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
               <div className="flex flex-col items-start justify-center">
-                <h5 className="text-xl font-semibold">
+                <h5 className="md:text-xl text-lg font-semibold">
                   {userData?.firstName} {userData?.lastName} ||
-                  <div className="inline-flex gap-2 text-base">
+                  <div className="inline-flex gap-2 text-sm md:text-base">
                     <span className="text-gray-500 ml-3">
                       {userData?.house} {userData?.address},
                     </span>
@@ -92,7 +92,7 @@ const UserDetail = () => {
                   </span>
                 </div>
               </div>
-              <div className="col-st5 col-711 text-right">
+              <div className="md:text-right">
                 <a
                   download="khan_anupam_cv.pdf"
                   href="https://drive.google.com/uc?export=download&id=1NvloK_rkQEySOcRQXHk3dr3Lu0uaIHSf"

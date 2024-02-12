@@ -1,12 +1,15 @@
+import { enqueueSnackbar } from 'notistack';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import Address from '../../assets/address.svg';
 import Avatar from '../../assets/avatar.svg';
 import { useFormContext, useUsersContext } from '../../contextAPI';
 import { FormAction } from '../../states/action.interface';
+
 const AddUserForm = () => {
   const { state, dispatch } = useFormContext();
   const { handleSubmit } = useUsersContext();
   const [submitted, setSubmitted] = useState(false);
+
   // submit to add new user data
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +30,9 @@ const AddUserForm = () => {
         type: FormAction.CLEAR,
       });
       setSubmitted(false);
+      return enqueueSnackbar('successfully added on last page!', {
+        variant: 'success',
+      });
     }
   };
   const handleFormInputChange = (
