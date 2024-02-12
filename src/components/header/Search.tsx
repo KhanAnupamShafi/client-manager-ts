@@ -4,7 +4,7 @@ const Search = () => {
   const { handleInputChange } = useUsersContext();
 
   return (
-    <div className="flex justify-center my-16">
+    <div className="flex justify-center md:my-16">
       <div className="container bg-secondary p-8 text-center m-auto rounded-lg">
         <h3 className="text-2xl text-primary font-bold">
           Browse User

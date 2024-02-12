@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Add from '../../assets/add.svg';
 import Logo from '../../assets/logo.svg';
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <nav className="top-0 sticky z-40 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-primary">
       <div className="md:container !px-0 flex flex-wrap items-center justify-between">
@@ -19,7 +20,13 @@ const Header = () => {
               onClick={(e) => {
                 const hero = document.getElementById('add_user');
                 e.preventDefault(); // Stop Page Reloading
-                hero && hero.scrollIntoView();
+                navigate('/');
+                hero &&
+                  hero.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: 'nearest',
+                  });
               }}
               className="bg-white text-primary active:bg-primary text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
               href="#"

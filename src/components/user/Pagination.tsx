@@ -11,7 +11,7 @@ const Pagination = ({
   const { handlePageClick } = useUsersContext();
   return (
     <div className="container mx-auto flex justify-center my-10">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-wrap">
         {pageNumber.map((page) => (
           <button
             key={page}

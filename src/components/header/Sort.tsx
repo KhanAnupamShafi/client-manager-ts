@@ -10,14 +10,14 @@ const Sort = () => {
     totalResults,
   } = useUsersContext();
   return (
-    <div className="container !px-0 mx-auto border-b-2 border-secondary">
-      <div className="py-3 flex justify-between w-full text-[#4F5E64]">
+    <div className="container  mx-auto border-b-2 border-secondary md:!px-0 px-10">
+      <div className="py-3 flex md:flex-row flex-col md:gap-0 gap-3 justify-between w-full text-[#4F5E64]">
         <div className="text-sm">
           Showing results{' '}
           <b className="text-lg p-1">{totalResults}</b> in Total
         </div>
         <div className=" h-full">
-          <div className="relative mb-2 flex items-center after:w-[8px] after:h-[8px] after:border-black/70 after:border-b after:border-r after:transform after:rotate-45 after:absolute after:right-3 gap-3">
+          <div className="relative mb-2 flex items-center md:after:w-[8px] md:after:h-[8px] md:after:border-black/70 md:after:border-b md:after:border-r md:after:transform md:after:rotate-45 md:after:absolute md:after:right-3 gap-3">
             <div className="flex items-center">
               <button
                 disabled={sortBy === ''}

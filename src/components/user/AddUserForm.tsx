@@ -47,7 +47,7 @@ const AddUserForm = () => {
       </h2>
       <div className="max-w-xl p-6 flex items-center justify-center mx-auto  rounded-md shadow-md bg-white ">
         <form onSubmit={handleFormSubmit}>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 md:gap-6 mt-4 sm:grid-cols-2 md:text-base text-xs">
             <div>
               <label
                 className={`text-gray-700 ${
@@ -127,9 +127,9 @@ const AddUserForm = () => {
               </label>
             </div>
           </div>
-          <div className=" mt-5 py-5 ">
+          <div className=" md:mt-5 py-5 ">
             <div className="">
-              <label className="relative">
+              <label className="relative ">
                 <input
                   value={state.address}
                   placeholder="Street Address"
@@ -142,15 +142,15 @@ const AddUserForm = () => {
                   }`}
                   onChange={handleFormInputChange}
                 />
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <div className="absolute inset-y-0 left-0 flex md:flex-row flex-col items-center pl-3">
                   {' '}
                   <span className="w-5 h-5 inline-block">
                     <img className="w-full " src={Address} alt="" />
                   </span>
                 </div>
               </label>
-              <div className="flex">
-                <label className="flex-grow w-1/4 pr-2">
+              <div className="flex md:flex-row flex-col">
+                <label className="flex-grow w-full md:w-1/4 md:pr-2">
                   <input
                     value={state.house}
                     placeholder="House (optional)"
