@@ -12,6 +12,19 @@ export default {
         secondary: '#F2F6FD',
         'regal-blue': '#E0E6F7',
       },
+      keyframes: {
+        bouncedelay: {
+          '0%, 80%, 100%': {
+            transform: 'scale(0)',
+          },
+          '40%': {
+            transform: 'scale(1)',
+          },
+        },
+      },
+      animation: {
+        bouncy: 'bouncedelay 1.4s infinite ease-in-out both',
+      },
     },
   },
   plugins: [

@@ -31,8 +31,8 @@ const useApi = () => {
 
   // Function to fetch dummy user data from the API
   const fetchDummyUserData = async (
-    limit: number = 10,
-    skip: number = 50
+    limit: number = 100,
+    skip: number = 0
   ): Promise<void> => {
     try {
       // Update loading state to indicate fetching is in progress
@@ -44,7 +44,7 @@ const useApi = () => {
 
       // Fetch data from the API
       const response = await fetch(
-        `https://dummyjson.com/users?${limit}&skip=${skip}`
+        `https://dummyjson.com/users?limit=${limit}&skip=${skip}`
       );
       // handle error response
       if (!response) {

@@ -23,6 +23,8 @@ const FormReducer = (state = initialState, action: IFormAction) => {
       return {
         ...state,
       };
+    case FormAction.CLEAR:
+      return initialState;
     default:
       return state;
   }

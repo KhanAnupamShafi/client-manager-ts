@@ -16,8 +16,11 @@ interface UsersContextType {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSortChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   toggleSortOrder: () => void;
+  handlePageClick: (page: number | string) => void;
   sortOrder: string;
   sortBy: string;
+  totalResults: number;
+  currentPage: number;
 }
 
 interface FormContextType {
@@ -32,8 +35,11 @@ const UsersContext = createContext<UsersContextType>({
   handleInputChange: () => {},
   handleSortChange: () => {},
   toggleSortOrder: () => {},
+  handlePageClick: () => {},
   sortOrder: '',
   sortBy: '',
+  totalResults: 0,
+  currentPage: 1,
 });
 
 // Create the Form context

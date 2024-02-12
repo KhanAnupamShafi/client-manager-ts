@@ -2,6 +2,7 @@
 export enum FormAction {
   INPUT = 'INPUT',
   ADD_USER = 'ADD_USER',
+  CLEAR = 'CLEAR',
 }
 
 // An interface for form actions

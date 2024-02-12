@@ -2,20 +2,39 @@ import SortAlt from '../../assets/sort-alpha-down-alt.svg';
 import SortDefault from '../../assets/sort-alpha-down.svg';
 import { useUsersContext } from '../../contextAPI';
 const Sort = () => {
-  const { handleSortChange, toggleSortOrder, sortOrder, sortBy } =
-    useUsersContext();
+  const {
+    handleSortChange,
+    toggleSortOrder,
+    sortOrder,
+    sortBy,
+    totalResults,
+  } = useUsersContext();
   return (
     <div className="container !px-0 mx-auto border-b-2 border-secondary">
       <div className="py-3 flex justify-between w-full text-[#4F5E64]">
-        <div>Showing results</div>
+        <div className="text-sm">
+          Showing results{' '}
+          <b className="text-lg p-1">{totalResults}</b> in Total
+        </div>
         <div className=" h-full">
-          <div className="relative mb-2 flex items-center after:w-[8px] after:h-[8px] after:border-black/70 after:border-b after:border-r after:transform after:rotate-45 after:absolute after:right-3">
+          <div className="relative mb-2 flex items-center after:w-[8px] after:h-[8px] after:border-black/70 after:border-b after:border-r after:transform after:rotate-45 after:absolute after:right-3 gap-3">
             <div className="flex items-center">
-              <button onClick={toggleSortOrder}>
+              <button
+                disabled={sortBy === ''}
+                className="w-6 h-6 !cursor-pointer"
+                onClick={toggleSortOrder}>
                 {sortOrder === 'asc' ? (
-                  <img src={SortDefault} alt="" />
+                  <img
+                    className="w-full object-cover"
+                    src={SortDefault}
+                    alt=""
+                  />
                 ) : (
-                  <img src={SortAlt} alt="" />
+                  <img
+                    className="w-full object-cover"
+                    src={SortAlt}
+                    alt=""
+                  />
                 )}
               </button>
             </div>

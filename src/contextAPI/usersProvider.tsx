@@ -10,6 +10,8 @@ const UsersProvider = ({ children }: props) => {
   const [usersData, setUsersData] = useState<IUser[]>([]);
   const [sortBy, setSortBy] = useState('');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [totalResults, setTotalResults] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   // Filter the users based on the search term
   useEffect(() => {
@@ -19,6 +21,8 @@ const UsersProvider = ({ children }: props) => {
       return fullName.includes(searchTerm.toLowerCase());
     });
     setUsersData(filteredUsersData);
+    setTotalResults(filteredUsersData.length);
+    setCurrentPage(1);
   }, [searchTerm, allUsersData]);
 
   // Integrate the useDebounce hook
@@ -30,25 +34,6 @@ const UsersProvider = ({ children }: props) => {
     handleDebouncedSearchTerm(term);
   };
 
-  // const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
-  //   const sortBy = e.target.value;
-  //   if (sortBy === 'option-1') {
-  //     const sortedUsersData = [...usersData].sort((a, b) => {
-  //       return a.firstName.localeCompare(b.firstName);
-  //     });
-  //     setUsersData(sortedUsersData);
-  //   } else if (sortBy === 'option-2') {
-  //     const sortedUsersData = [...usersData].sort((a, b) => {
-  //       return a.email.localeCompare(b.email);
-  //     });
-  //     setUsersData(sortedUsersData);
-  //   } else if (sortBy === 'option-3') {
-  //     const sortedUsersData = [...usersData].sort((a, b) => {
-  //       return a.company.localeCompare(b.company);
-  //     });
-  //     setUsersData(sortedUsersData);
-  //   }
-  // };
   const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const sortBy = e.target.value;
     setSortBy(sortBy);
@@ -57,6 +42,7 @@ const UsersProvider = ({ children }: props) => {
     sortUsers(sortBy, 'asc');
   };
 
+  // Sort users by name / company in asc/desc order
   const sortUsers = (sortBy: string, order: 'asc' | 'desc') => {
     const sortedUsersData = [...usersData];
     switch (sortBy) {
@@ -83,10 +69,19 @@ const UsersProvider = ({ children }: props) => {
     }
     setUsersData(sortedUsersData);
   };
-
+  // asc / desc toggler
   const toggleSortOrder = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     sortUsers(sortBy, sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  // Function to handle pagination click
+  const handlePageClick = (page: number | string) => {
+    if (typeof page === 'number') {
+      setCurrentPage(page);
+    } else {
+      // Handle ellipsis click or other actions
+    }
   };
   return (
     <UsersContext.Provider
@@ -99,6 +94,9 @@ const UsersProvider = ({ children }: props) => {
         toggleSortOrder,
         sortOrder,
         sortBy,
+        totalResults,
+        currentPage,
+        handlePageClick,
       }}>
       {children}
     </UsersContext.Provider>

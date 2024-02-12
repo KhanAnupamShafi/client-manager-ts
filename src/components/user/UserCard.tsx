@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom';
 import Address from '../../assets/address.svg';
+import Avatar from '../../assets/avatar.svg';
 import Company from '../../assets/company.svg';
 import { IUser } from '../../interface';
 
 const UserCard = ({ user }: { user: IUser }) => {
   return (
-    <a
-      href="#"
+    <Link
+      to={`/user-details/${user?.id}`}
       className="w-80 mt-6 bg-secondary border border-regal-blue rounded-lg hover:cardHoverEffect transition-all duration-300 hover:drop-shadow-md">
       <div className=" flex flex-col justify-center py-7 px-5 ">
         <div className="flex  items-center ">
@@ -13,8 +15,8 @@ const UserCard = ({ user }: { user: IUser }) => {
             <figure className="block relative w-24 h-24 rounded-full overflow-hidden">
               <div className="w-full h-full flex justify-center items-center">
                 <img
-                  alt="name"
-                  src="https://i.stack.imgur.com/HgkK0.png"
+                  alt="user profile image"
+                  src={user.avatar ? user.avatar : Avatar}
                   className="object-cover w-full h-full rounded-full"
                 />
               </div>
@@ -58,7 +60,7 @@ const UserCard = ({ user }: { user: IUser }) => {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
